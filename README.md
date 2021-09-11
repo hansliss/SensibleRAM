@@ -62,7 +62,7 @@ The "max array size" fields come from an experiment I did, using a BASIC program
 Feel free to build on this! One possible addition would be to add an I/O location at, say $91FF, that causes the character ROM to be detached from the CPU bus and replaced with RAM, for an additional 4k of available RAM at $8000 - $8FFF, which is within the contiguous section. This would increase free space to 35839 bytes. Since this design uses a 32k chip which is 99.4% wasted, this would be a noble use of some of 
 the space.
 
-** Some technical notes without any explanatory text
+*** Some technical notes without any explanatory text
 bit 7 of $9002 controls A9 of screen memory and A9 of color memory
 bit 4-7 of $9005 controls A10-A13 of VIC screen memory. A13 is /BLK4 to the CPU.
 
