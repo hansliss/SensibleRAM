@@ -31,23 +31,23 @@ The reason that the screen memory is located in one of those places as opposed t
 
 The way this has been handled is that the VIC chip shares two different blocks with the CPU, BLK0 and BLK4. The VIC chip has 14 address bits. VA0-VA12 are connected via a tri-state buffer (controlled by a clock pin, but let's leave bus sharing out of this) to the CPU's CA0-CA12, but the most significant bit VA13 is connected to the active-low block selector /BLK4. This means that what the CPU sees as $0000-$1FFF, the VIC sees as $2000-$3FFF, and what the CPU sees as $8000-$9FFF is $0000-1FFF to the VIC.
 
-There's also a mechanism explicitly blocking the VIC chip from sharing some areas with the CPU. Those include the three RAM blocks RAM[1-3] at $0400, the main expansion and ROM blocks BLK[1,2,3,5,6,7] (which have to be blocked since the VIC chip can't address them), and the two auxiliary I/O areas I/O2 and I/O3, located in BLK4. On top of that, the expansions we talked about earlier are all cartridge expansions, so they are sitting on the CPU bus rather than the VIC bus, so they are unavailable to the VIC anyway.
+There's also a mechanism explicitly blocking the VIC chip from sharing some areas with the CPU. Those include the three RAM blocks RAM[1-3] at $0400, the main expansion and ROM blocks BLK[1,2,3,5,6,7] (which have to be blocked since the VIC chip can't address them), and the two auxiliary I/O areas I/O2 and I/O3, located within BLK4. On top of that, the expansions we talked about earlier are all cartridge expansions, so they are sitting on the CPU bus rather than the VIC bus, which means they are unavailable to the VIC anyway.
 
 ## Conclusion
 
-So, we're left with $1000-$1FFF for the screen memory, since the first kB is used by the OS (although you can map the screen memory to the zero page, for a fun exercise), and BLK4, which is used only for the character ROM, the colour RAM and the I/O registers.
+So, we're left with choosing an area within the interval $1000-$1FFF for the screen memory, since the first kB in BLK0 is used by the OS (although you can map the screen memory to the zero page, for a fun exercise), and BLK4, which is used only for the character ROM, the colour RAM and the I/O registers, doesn't have any available RAM.
 
 Tough.
 
 ## The fix
 
-_However_, the I/O registers at I/O0 ($9000-$93FF) take up far less than the entire interval, with the highest register at $912F. This leaves $9200-$93FF entirely free, and it is addressable to both the CPU and the VIC.
+_However_, the I/O registers at I/O0 ($9000-$93FF) take up far less than the entire interval, with the highest register at $912F. This leaves $9200-$93FF entirely free, and this area is addressable to both the CPU and the VIC.
 
 So, this project adds 512 bytes of RAM to $9200, and with the included programs you can move the screen memory to this area on your VIC, freeing up 512 bytes of BASIC RAM. If you have both 3k and 8k+ expansions, you can also add those 3k to your available BASIC RAM, for a whopping total win of 3500 bytes.
 
 The included assembly program will try to move the screen memory and start/end memory pointers as correctly as possible regardless of what memory expansions are present, and will then reinitialize BASIC.
 
-Here's a short BASIC program that assumes you have expansions in RAM[1-3] and BLK[1-3]:
+Here's a short BASIC program that does the same, but assumes you have expansions in RAM[1-3] and BLK[1-3]:
 ```
 10pO36866,pE(36866)or128:pO36869,(pE(36869)and15)or(4*16)
 20pO648,146:pO44,4:pO43,1:pO56,128:pO55,0:pO642,4
@@ -75,18 +75,21 @@ The "max array size" fields come from an experiment I did, using the BASIC progr
 Feel free to build on this! One possible addition would be to add an I/O location at, say $91FF, that causes the character ROM to be detached from the CPU bus and replaced with RAM, for an additional 4k of available RAM at $8000 - $8FFF, which is within the contiguous section. This would increase free space to 35839 bytes. Since this design uses a 32k chip which is 99.4% wasted, this would be a noble use of some of 
 the space.
 
+Please let me know what you come up with, and let me know if you actually try this thing out.
+
 ## Some technical notes without any explanatory text
 ```
 bit 7 of $9002 controls A9 of screen memory and A9 of color memory
-bit 4-7 of $9005 controls A10-A13 of VIC screen memory. A13 is /BLK4 to the CPU.
+bit 4-7 of $9005 controls A10-A13 of VIC screen memory. A13 is /BLK4 to the CPU
 
-$9200 = 1001 0010 0000 0000 = b01001 000000000
-$93FF = 1001 0011 1111 1111 = b01001 111111111
+$9200 = 1001 0010 0000 0000 = (VIC) b01001 000000000
+$93FF = 1001 0011 1111 1111 = (VIC) b01001 111111111
 
 !(A9 & A12 & !(A10 | A11 | A13))
 
-512 bytes = b01001 000000000 - b01001 111111111
-
+A9:
 $9002.7 = 1
+
+A10-13:
 $9005.4-7 = 0100
 ```
