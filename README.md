@@ -69,7 +69,7 @@ Here are some examples of what happens when you use this with different expansio
 |BLK[1,2,3] |28159 |9310 |28671 |9480 |512 |
 |RAM[1,2],BLK[1,2,3] |28159 |9310 |31743 |10505 |3584 |
 
-The "max array size" fields come from an experiment I did, using the BASIC program __testmem.bas__ that DIM'd string arrays of increasing size and filled them with strings, until no more memory was left. This program would have taken a week to run at the largest memory sizes, had I not run it in warp mode in VICE.
+The "max array size" fields come from an experiment I did, using the BASIC program __testmem.bas__ that DIM'd string arrays of increasing size and filled them with strings, until no more memory was left. This program would have taken a week to run at the largest memory sizes, had I not run it in warp mode in VICE (see VICE_patching_notes.md).
 
 ## The future
 Feel free to build on this! One possible addition would be to add an I/O location at, say $91FF, that causes the character ROM to be detached from the CPU bus and replaced with RAM, for an additional 4k of available RAM at $8000 - $8FFF, which is within the contiguous section. This would increase free space to 35839 bytes. Since this design uses a 32k chip which is 99.4% wasted, this would be a noble use of some of 
