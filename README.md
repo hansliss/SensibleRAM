@@ -76,6 +76,7 @@ Feel free to build on this! One possible addition would be to add an I/O locatio
 the space.
 
 ## Some technical notes without any explanatory text
+```
 bit 7 of $9002 controls A9 of screen memory and A9 of color memory
 bit 4-7 of $9005 controls A10-A13 of VIC screen memory. A13 is /BLK4 to the CPU.
 
@@ -88,3 +89,4 @@ $93FF = 1001 0011 1111 1111 = b01001 111111111
 
 $9002.7 = 1
 $9005.4-7 = 0100
+```
