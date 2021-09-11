@@ -63,11 +63,14 @@ Here are some examples of what happens when you use this with different expansio
 |None |3583 |1119 |4095 |1289 |512 |
 |RAM[1-3] |6655 |2143 |7167 |2313 |512 |
 |BLK1 |11775 |3848 |12287 |4021 |512
-|RAM[1-3], BLK1 |11775 |3848 | 15359 |5043 |3584 |
+|RAM[1-3],\
+BLK1 |11775 |3848 | 15359 |5043 |3584 |
 |BLK[1-2] |19967 |6581 |20479 |6751 |512 |
-|RAM[1-3], BLK[1-2] |19967 |6581 |23551 |7774 |3584 |
+|RAM[1-3],\
+BLK[1-2] |19967 |6581 |23551 |7774 |3584 |
 |BLK[1-3] |28159 |9310 |28671 |9480 |512 |
-|RAM[1-3], BLK[1-3] |28159 |9310 |31743 |10505 |3584 |
+|RAM[1-3],\
+BLK[1-3] |28159 |9310 |31743 |10505 |3584 |
 
 The "max array size" fields come from an experiment I did, using the BASIC program __testmem.bas__ that DIM'd string arrays of increasing size and filled them with strings, until no more memory was left. This program would have taken a week to run at the largest memory sizes, had I not run it in warp mode in VICE (see VICE_patching_notes.md).
 
