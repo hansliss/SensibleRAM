@@ -1,5 +1,5 @@
 SensibleRAM
-*** A RAM expansion to make your VIC-20 more sensible
+### A RAM expansion to make your VIC-20 more sensible
 
 _Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. In 2021, not so much._
 
@@ -7,7 +7,7 @@ _Note that this hardware is untested. The software has been tested in a patched 
 
 This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
 
-Anyway, some background:
+## Background
 
 The VIC-20 has a somewhat confusing memory map. It comes with 5kB of system RAM as standard, with 1k at the bottom of the memory map, and 4k at $1000. To BASIC, those upper 4k are available as working memory, minus 0.5k that is used by the system for screen memory.
 
@@ -21,15 +21,21 @@ However, with a larger expansion in place, any 3k memory at $0400 becomes unusab
 
 All this has two negative effects on the system: The screen memory placement at either $1E00 or $1000 precludes any chance of getting contiguous memory between $0400 and $7FFF, and the screen memory eats up 512 bytes that could have been used as BASIC memory.
 
+## The hardware
+
 The reason that the screen memory is located in one of those places as opposed to $0400 or $7E00 has to do with how the VIC chip is wired. The screen memory has to be shared between the CPU and the VIC, and the VIC can only address 16k of memory.
 
 The way this has been handled is that the VIC chip shares two different blocks with the CPU, BLK0 and BLK4. The VIC chip has 14 address bits. VA0-VA12 are connected via a tri-state buffer (controlled by a clock pin, but let's leave bus sharing out of this) to the CPU's A0-A12, but the most significant bit VA13 is connected to the active-low block selector BLK4. This means that what the CPU sees as $0000-$1FFF, the VIC sees as $2000-$2FFF, and what the CPU sees as $8000-$9FFF is $0000-1FFF to the VIC.
 
 There's also a mechanism explicitly blocking the VIC chip from sharing some areas with the CPU. Those include the three RAM blocks RAM[1-3] at $0400, the main expansion and ROM blocks BLK[1,2,3,5,6,7] (which have to be blocked since the VIC chip can't address them), and the two auxiliary I/O areas I/O2 and I/O3, located in BLK4. On top of that, the expansions we talked about earlier are all cartridge expansions, so they are sitting on the CPU bus rather than the VIC bus, so they are unavailable to the VIC anyway.
 
+## Conclusion
+
 So, we're left with $1000-$1FFF for the screen memory, since the first kB is used by the OS (although you can map the screen memory to the zero page, for a fun exercise), and BLK4, which is used only for the character ROM, the colour RAM and the I/O registers.
 
 Tough.
+
+## The fix
 
 _However_, the I/O registers at I/O0 ($9000-$93FF) take up far less than the entire interval, with the highest register at $912F. This leaves $9200-$93FF entirely free, and it is addressable to both the CPU and the VIC.
 
@@ -44,6 +50,8 @@ Here's a short BASIC program that assumes you have expansions in RAM[1-3] and BL
 30pO641,0:pO644,128:pO643,0:pO1024,0:sys58232
 ```
 
+## The effects
+
 Here are some examples of what happens when you use this with different expansions:
 
 |Expansion|Orig. free ram|Orig max array size|New free RAM|New max array size|RAM increase|
@@ -57,8 +65,9 @@ Here are some examples of what happens when you use this with different expansio
 |BLK[1,2,3] |28159 |9310 |28671 |9480 |512 |
 |RAM[1,2],BLK[1,2,3] |28159 |9310 |31743 |10505 |3584 |
 
-The "max array size" fields come from an experiment I did, using a BASIC program "testmem.bas" that DIM'd string arrays of increasing size and filled them with strings, until no more memory was left. This program would have taken a week to run at the largest memory sizes, had I not run it in warp mode in VICE.
+The "max array size" fields come from an experiment I did, using the BASIC program __testmem.bas__ that DIM'd string arrays of increasing size and filled them with strings, until no more memory was left. This program would have taken a week to run at the largest memory sizes, had I not run it in warp mode in VICE.
 
+## The future
 Feel free to build on this! One possible addition would be to add an I/O location at, say $91FF, that causes the character ROM to be detached from the CPU bus and replaced with RAM, for an additional 4k of available RAM at $8000 - $8FFF, which is within the contiguous section. This would increase free space to 35839 bytes. Since this design uses a 32k chip which is 99.4% wasted, this would be a noble use of some of 
 the space.
 
