@@ -1,5 +1,5 @@
 SensibleRAM
-### A RAM expansion to make your VIC-20 more sensible
+# A RAM expansion to make your VIC-20 more sensible
 
 _Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. In 2021, not so much._
 
