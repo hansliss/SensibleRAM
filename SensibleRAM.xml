@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>K:\Hans Liss\Documents\KiCad\SensibleRAM\SensibleRAM.sch</source>
+    <date>2021-09-10 13:16:56</date>
+    <tool>Eeschema (5.1.10)-1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>SensibleRAM.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>MOS6561_socket</value>
+      <footprint>Housings_DIP:DIP-40_W15.24mm</footprint>
+      <libsource lib="VIC-20" part="MOS6561_socket" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>613B5A4D</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>MOS6561</value>
+      <footprint>Housings_DIP:DIP-40_W15.24mm</footprint>
+      <libsource lib="VIC-20" part="MOS6561" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>613B64D0</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>CY62256-70PC</value>
+      <footprint>VIC-20:SOP-28W_330mil_Pitch1.27mm</footprint>
+      <datasheet>https://ecee.colorado.edu/~mcclurel/Cypress_SRAM_CY62256.pdf</datasheet>
+      <fields>
+        <field name="LCSC">C261868</field>
+      </fields>
+      <libsource lib="Memory_RAM" part="CY62256-70PC" description="256K (32K x 8) Static RAM, 70ns, DIP-28"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>614A9396</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>SN74LVC1G10DBVR</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</footprint>
+      <fields>
+        <field name="LCSC">C403721</field>
+      </fields>
+      <libsource lib="VIC-20" part="SN74LVC1G10DBVR" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>617852AA</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>SN74LVC1G27DBVR</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</footprint>
+      <fields>
+        <field name="LCSC">C128410</field>
+      </fields>
+      <libsource lib="VIC-20" part="SN74LVC1G27DBVR" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6179A10B</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Memory_RAM" part="KM62256CLP">
+      <aliases>
+        <alias>HM62256BLP</alias>
+        <alias>CY62256-70PC</alias>
+      </aliases>
+      <description>32Kx8 bit Low Power CMOS Static RAM, 55/70ns, DIP-28</description>
+      <docs>https://www.futurlec.com/Datasheet/Memory/62256.pdf</docs>
+      <footprints>
+        <fp>DIP*W15.24mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">KM62256CLP</field>
+        <field name="Footprint">Package_DIP:DIP-28_W15.24mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A14" type="input"/>
+        <pin num="2" name="A12" type="input"/>
+        <pin num="3" name="A7" type="input"/>
+        <pin num="4" name="A6" type="input"/>
+        <pin num="5" name="A5" type="input"/>
+        <pin num="6" name="A4" type="input"/>
+        <pin num="7" name="A3" type="input"/>
+        <pin num="8" name="A2" type="input"/>
+        <pin num="9" name="A1" type="input"/>
+        <pin num="10" name="A0" type="input"/>
+        <pin num="11" name="Q0" type="3state"/>
+        <pin num="12" name="Q1" type="3state"/>
+        <pin num="13" name="Q2" type="3state"/>
+        <pin num="14" name="GND" type="power_in"/>
+        <pin num="15" name="Q3" type="3state"/>
+        <pin num="16" name="Q4" type="3state"/>
+        <pin num="17" name="Q5" type="3state"/>
+        <pin num="18" name="Q6" type="3state"/>
+        <pin num="19" name="Q7" type="3state"/>
+        <pin num="20" name="~CS" type="input"/>
+        <pin num="21" name="A10" type="input"/>
+        <pin num="22" name="~OE" type="input"/>
+        <pin num="23" name="A11" type="input"/>
+        <pin num="24" name="A9" type="input"/>
+        <pin num="25" name="A8" type="input"/>
+        <pin num="26" name="A13" type="input"/>
+        <pin num="27" name="~WE" type="input"/>
+        <pin num="28" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="VIC-20" part="MOS6561">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MOS6561</field>
+      </fields>
+      <pins>
+        <pin num="1" name="N.C." type="NotConnected"/>
+        <pin num="2" name="Chroma" type="output"/>
+        <pin num="3" name="Luma/Sync" type="output"/>
+        <pin num="4" name="R/~W" type="input"/>
+        <pin num="5" name="VD11" type="input"/>
+        <pin num="6" name="VD10" type="input"/>
+        <pin num="7" name="VD9" type="input"/>
+        <pin num="8" name="VD8" type="input"/>
+        <pin num="9" name="D7" type="input"/>
+        <pin num="10" name="D6" type="input"/>
+        <pin num="11" name="D5" type="input"/>
+        <pin num="12" name="D4" type="input"/>
+        <pin num="13" name="D3" type="input"/>
+        <pin num="14" name="D2" type="input"/>
+        <pin num="15" name="D1" type="input"/>
+        <pin num="16" name="D0" type="input"/>
+        <pin num="17" name="PotX" type="input"/>
+        <pin num="18" name="PotY" type="input"/>
+        <pin num="19" name="Audio" type="output"/>
+        <pin num="20" name="Vss" type="power_in"/>
+        <pin num="21" name="A0" type="BiDi"/>
+        <pin num="22" name="A1" type="BiDi"/>
+        <pin num="23" name="A2" type="BiDi"/>
+        <pin num="24" name="A3" type="BiDi"/>
+        <pin num="25" name="A4" type="BiDi"/>
+        <pin num="26" name="A5" type="BiDi"/>
+        <pin num="27" name="A6" type="BiDi"/>
+        <pin num="28" name="A7" type="BiDi"/>
+        <pin num="29" name="A8" type="BiDi"/>
+        <pin num="30" name="A9" type="BiDi"/>
+        <pin num="31" name="A10" type="BiDi"/>
+        <pin num="32" name="A11" type="BiDi"/>
+        <pin num="33" name="A12" type="BiDi"/>
+        <pin num="34" name="A13" type="BiDi"/>
+        <pin num="35" name="PPhi1" type="output"/>
+        <pin num="36" name="PPhi2" type="output"/>
+        <pin num="37" name="Lightpen" type="input"/>
+        <pin num="38" name="Phi2" type="input"/>
+        <pin num="39" name="Phi1" type="input"/>
+        <pin num="40" name="Vdd" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="VIC-20" part="MOS6561_socket">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MOS6561_socket</field>
+      </fields>
+      <pins>
+        <pin num="1" name="N.C." type="NotConnected"/>
+        <pin num="2" name="Chroma" type="input"/>
+        <pin num="3" name="Luma/Sync" type="input"/>
+        <pin num="4" name="R/~W" type="output"/>
+        <pin num="5" name="VD11" type="3state"/>
+        <pin num="6" name="VD10" type="3state"/>
+        <pin num="7" name="VD9" type="3state"/>
+        <pin num="8" name="VD8" type="3state"/>
+        <pin num="9" name="D7" type="3state"/>
+        <pin num="10" name="D6" type="3state"/>
+        <pin num="11" name="D5" type="3state"/>
+        <pin num="12" name="D4" type="3state"/>
+        <pin num="13" name="D3" type="3state"/>
+        <pin num="14" name="D2" type="3state"/>
+        <pin num="15" name="D1" type="3state"/>
+        <pin num="16" name="D0" type="3state"/>
+        <pin num="17" name="PotX" type="output"/>
+        <pin num="18" name="PotY" type="output"/>
+        <pin num="19" name="Audio" type="input"/>
+        <pin num="20" name="Vss" type="power_out"/>
+        <pin num="21" name="A0" type="BiDi"/>
+        <pin num="22" name="A1" type="BiDi"/>
+        <pin num="23" name="A2" type="BiDi"/>
+        <pin num="24" name="A3" type="BiDi"/>
+        <pin num="25" name="A4" type="BiDi"/>
+        <pin num="26" name="A5" type="BiDi"/>
+        <pin num="27" name="A6" type="BiDi"/>
+        <pin num="28" name="A7" type="BiDi"/>
+        <pin num="29" name="A8" type="BiDi"/>
+        <pin num="30" name="A9" type="BiDi"/>
+        <pin num="31" name="A10" type="BiDi"/>
+        <pin num="32" name="A11" type="BiDi"/>
+        <pin num="33" name="A12" type="BiDi"/>
+        <pin num="34" name="A13" type="BiDi"/>
+        <pin num="35" name="PPhi1" type="input"/>
+        <pin num="36" name="PPhi2" type="input"/>
+        <pin num="37" name="Lightpen" type="output"/>
+        <pin num="38" name="Phi2" type="output"/>
+        <pin num="39" name="Phi1" type="output"/>
+        <pin num="40" name="Vdd" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="VIC-20" part="SN74LVC1G10DBVR">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">SN74LVC1G10DBVR</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</field>
+        <field name="LCSC">C403721</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="input"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="B" type="input"/>
+        <pin num="4" name="Y" type="output"/>
+        <pin num="5" name="Vcc" type="power_in"/>
+        <pin num="6" name="C" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="VIC-20" part="SN74LVC1G27DBVR">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">SN74LVC1G27DBVR</field>
+        <field name="Footprint">TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</field>
+        <field name="LCSC">C128410</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="input"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="B" type="input"/>
+        <pin num="4" name="Y" type="output"/>
+        <pin num="5" name="Vcc" type="power_in"/>
+        <pin num="6" name="C" type="input"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Memory_RAM">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Memory_RAM.lib</uri>
+    </library>
+    <library logical="VIC-20">
+      <uri>K:\Hans Liss\Documents\KiCad\SensibleRAM/VIC-20.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/D7">
+      <node ref="U1" pin="9"/>
+      <node ref="U2" pin="9"/>
+      <node ref="U5" pin="19"/>
+    </net>
+    <net code="2" name="/A8">
+      <node ref="U2" pin="29"/>
+      <node ref="U5" pin="25"/>
+      <node ref="U1" pin="29"/>
+    </net>
+    <net code="3" name="/A7">
+      <node ref="U5" pin="3"/>
+      <node ref="U2" pin="28"/>
+      <node ref="U1" pin="28"/>
+    </net>
+    <net code="4" name="/A6">
+      <node ref="U2" pin="27"/>
+      <node ref="U5" pin="4"/>
+      <node ref="U1" pin="27"/>
+    </net>
+    <net code="5" name="/A5">
+      <node ref="U2" pin="26"/>
+      <node ref="U1" pin="26"/>
+      <node ref="U5" pin="5"/>
+    </net>
+    <net code="6" name="/A4">
+      <node ref="U1" pin="25"/>
+      <node ref="U2" pin="25"/>
+      <node ref="U5" pin="6"/>
+    </net>
+    <net code="7" name="/A3">
+      <node ref="U1" pin="24"/>
+      <node ref="U5" pin="7"/>
+      <node ref="U2" pin="24"/>
+    </net>
+    <net code="8" name="/A2">
+      <node ref="U1" pin="23"/>
+      <node ref="U2" pin="23"/>
+      <node ref="U5" pin="8"/>
+    </net>
+    <net code="9" name="/A1">
+      <node ref="U1" pin="22"/>
+      <node ref="U5" pin="9"/>
+      <node ref="U2" pin="22"/>
+    </net>
+    <net code="10" name="/A0">
+      <node ref="U1" pin="21"/>
+      <node ref="U2" pin="21"/>
+      <node ref="U5" pin="10"/>
+    </net>
+    <net code="12" name="/D6">
+      <node ref="U1" pin="10"/>
+      <node ref="U5" pin="18"/>
+      <node ref="U2" pin="10"/>
+    </net>
+    <net code="13" name="/D5">
+      <node ref="U5" pin="17"/>
+      <node ref="U2" pin="11"/>
+      <node ref="U1" pin="11"/>
+    </net>
+    <net code="14" name="/D4">
+      <node ref="U2" pin="12"/>
+      <node ref="U1" pin="12"/>
+      <node ref="U5" pin="16"/>
+    </net>
+    <net code="15" name="/D3">
+      <node ref="U2" pin="13"/>
+      <node ref="U5" pin="15"/>
+      <node ref="U1" pin="13"/>
+    </net>
+    <net code="16" name="/D2">
+      <node ref="U2" pin="14"/>
+      <node ref="U5" pin="13"/>
+      <node ref="U1" pin="14"/>
+    </net>
+    <net code="17" name="/D1">
+      <node ref="U1" pin="15"/>
+      <node ref="U2" pin="15"/>
+      <node ref="U5" pin="12"/>
+    </net>
+    <net code="18" name="/D0">
+      <node ref="U1" pin="16"/>
+      <node ref="U2" pin="16"/>
+      <node ref="U5" pin="11"/>
+    </net>
+    <net code="19" name="/PP1">
+      <node ref="U1" pin="35"/>
+      <node ref="U2" pin="35"/>
+    </net>
+    <net code="20" name="VCC">
+      <node ref="U1" pin="40"/>
+      <node ref="U5" pin="28"/>
+      <node ref="U3" pin="5"/>
+      <node ref="U2" pin="40"/>
+      <node ref="U4" pin="5"/>
+    </net>
+    <net code="22" name="/P2">
+      <node ref="U1" pin="38"/>
+      <node ref="U2" pin="38"/>
+    </net>
+    <net code="23" name="/P1">
+      <node ref="U2" pin="39"/>
+      <node ref="U1" pin="39"/>
+    </net>
+    <net code="24" name="/PP2">
+      <node ref="U2" pin="36"/>
+      <node ref="U1" pin="36"/>
+    </net>
+    <net code="25" name="Net-(U1-Pad1)">
+      <node ref="U1" pin="1"/>
+    </net>
+    <net code="26" name="Net-(U2-Pad1)">
+      <node ref="U2" pin="1"/>
+    </net>
+    <net code="27" name="GND">
+      <node ref="U5" pin="1"/>
+      <node ref="U5" pin="26"/>
+      <node ref="U5" pin="24"/>
+      <node ref="U5" pin="21"/>
+      <node ref="U4" pin="2"/>
+      <node ref="U5" pin="2"/>
+      <node ref="U3" pin="2"/>
+      <node ref="U1" pin="20"/>
+      <node ref="U5" pin="14"/>
+      <node ref="U5" pin="23"/>
+      <node ref="U2" pin="20"/>
+    </net>
+    <net code="28" name="Net-(U3-Pad4)">
+      <node ref="U4" pin="1"/>
+      <node ref="U3" pin="4"/>
+    </net>
+    <net code="29" name="/A12">
+      <node ref="U4" pin="6"/>
+      <node ref="U1" pin="33"/>
+      <node ref="U2" pin="33"/>
+    </net>
+    <net code="30" name="/A9">
+      <node ref="U2" pin="30"/>
+      <node ref="U4" pin="3"/>
+      <node ref="U1" pin="30"/>
+    </net>
+    <net code="31" name="/A13">
+      <node ref="U2" pin="34"/>
+      <node ref="U1" pin="34"/>
+      <node ref="U3" pin="6"/>
+    </net>
+    <net code="32" name="/A11">
+      <node ref="U3" pin="3"/>
+      <node ref="U2" pin="32"/>
+      <node ref="U1" pin="32"/>
+    </net>
+    <net code="33" name="/A10">
+      <node ref="U2" pin="31"/>
+      <node ref="U1" pin="31"/>
+      <node ref="U3" pin="1"/>
+    </net>
+    <net code="34" name="MSel">
+      <node ref="U5" pin="20"/>
+      <node ref="U4" pin="4"/>
+      <node ref="U5" pin="22"/>
+    </net>
+    <net code="36" name="/R~W">
+      <node ref="U5" pin="27"/>
+      <node ref="U2" pin="4"/>
+      <node ref="U1" pin="4"/>
+    </net>
+    <net code="37" name="/LPen">
+      <node ref="U1" pin="37"/>
+      <node ref="U2" pin="37"/>
+    </net>
+    <net code="38" name="/LMS">
+      <node ref="U2" pin="3"/>
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="39" name="/VD11">
+      <node ref="U1" pin="5"/>
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="40" name="/VD10">
+      <node ref="U1" pin="6"/>
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="41" name="/VD9">
+      <node ref="U2" pin="7"/>
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="42" name="/VD8">
+      <node ref="U2" pin="8"/>
+      <node ref="U1" pin="8"/>
+    </net>
+    <net code="43" name="/Chrm">
+      <node ref="U2" pin="2"/>
+      <node ref="U1" pin="2"/>
+    </net>
+    <net code="44" name="/Aud">
+      <node ref="U1" pin="19"/>
+      <node ref="U2" pin="19"/>
+    </net>
+    <net code="45" name="/PotY">
+      <node ref="U2" pin="18"/>
+      <node ref="U1" pin="18"/>
+    </net>
+    <net code="46" name="/PotX">
+      <node ref="U1" pin="17"/>
+      <node ref="U2" pin="17"/>
+    </net>
+  </nets>
+</export>

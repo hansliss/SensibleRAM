@@ -1,0 +1,6 @@
+Comment,Designator,Footprint,LCSC
+"MOS6561_socket","U1","Housings_DIP:DIP-40_W15.24mm",""
+"MOS6561","U2","Housings_DIP:DIP-40_W15.24mm",""
+"SN74LVC1G27DBVR","U3","TO_SOT_Packages_SMD:SOT-23-6_Handsoldering","C128410"
+"SN74LVC1G10DBVR","U4","TO_SOT_Packages_SMD:SOT-23-6_Handsoldering","C403721"
+"CY62256-70PC","U5","VIC-20:SOP-28W_330mil_Pitch1.27mm","C261868"

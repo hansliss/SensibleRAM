@@ -1,0 +1,16 @@
+bit 7 of $9002 controls A9 of screen memory and A9 of color memory
+bit 4-7 of $9005 controls A10-A13 of VIC screen memory. A13 is /BLK4 to the CPU.
+
+$9200 = 1001 0010 0000 0000 = b01001 000000000
+$93FF = 1001 0011 1111 1111 = b01001 111111111
+
+!(A9 & A12 & !(A10 | A11 | A13))
+
+512 bytes = b01001 000000000 - b01001 111111111
+
+$9002.7 = 1
+$9005.4-7 = 0100
+
+10pO36866,pE(36866)or128:pO36869,(pE(36869)and15)or(4*16)
+20pO648,146:pO44,4:pO43,1:pO56,128:pO55,0:pO642,4
+30pO641,0:pO644,128:pO643,0:pO1024,0:sys58232

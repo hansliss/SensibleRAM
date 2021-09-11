@@ -1,0 +1,75 @@
+00001  0000             *          = $A000
+00002  A000  A9 57                 LDA #$57
+00003  A002  8D 00 04              STA $0400
+00004  A005  A9 73                 LDA #$73
+00005  A007  8D 50 04              STA $0450
+00006  A00A  AD 00 04              LDA $0400
+00007  A00D  C9 57                 CMP #$57
+00008  A00F  D0 0B                 BNE NORAM1
+00009  A011  AD 50 04              LDA $0450
+00010  A014  C9 73                 CMP #$73
+00011  A016  D0 04                 BNE NORAM1
+00012  A018             ; THERE'S RAM IN RAM1-RAM3, SO START OF RAM SHOULD BE SET
+00013  A018             ; TO $0400.
+00014  A018  A2 04                 LDX #$04
+00015  A01A  D0 02                 BNE CONT1
+00016  A01C             NORAM1
+00017  A01C             ; THERE'S NO RAM IN RAM1-RAM3, SO START OF RAM SHOULD BE SET
+00018  A01C             ; TO $1000, AND END OF RAM SHOULD BE LEFT UNCHANGED.
+00019  A01C  A2 10                 LDX #$10
+00020  A01E             CONT1
+00021  A01E             ; IF THE END OF RAM IS $1E00, IT SHOULD
+00022  A01E             ; BE CHANGED TO $2000, OTHERWISE IT SHOULD BE LEFT ALONE
+00023  A01E  A5 38                 LDA $38
+00024  A020  C9 1E                 CMP #$1E
+00025  A022  D0 02                 BNE NOADJ
+00026  A024  A9 20                 LDA #$20
+00027  A026             NOADJ
+00028  A026  A8                    TAY
+00029  A027             ; INITIALIZE VIC REGISTERS TO USE THE SCREEN RAM AT $9200
+00030  A027  AD 02 90              LDA $9002
+00031  A02A  09 80                 ORA #$80
+00032  A02C  8D 02 90              STA $9002
+00033  A02F  AD 05 90              LDA $9005
+00034  A032  29 0F                 AND #$0F
+00035  A034  09 40                 ORA #$40
+00036  A036  8D 05 90              STA $9005
+00037  A039             ; SET THE SCREEN MEMORY PAGE TO $92
+00038  A039  A9 92                 LDA #$92
+00039  A03B  8D 88 02              STA $0288 ; SCREEN MEMORY PAGE
+00040  A03E             ; STORE THE END OF RAM PAGE TO $0284 AND $38
+00041  A03E  8C 84 02              STY $0284 ; TOP OF MEMORY FOR OP SYSTEM, HSB
+00042  A041  84 38                 STY $38 ; POINTER: LIMIT OF MEMORY, HSB
+00043  A043             ; STORE THE START OF RAM PAGE TO $0282 AND $2C
+00044  A043  8E 82 02              STX $0282 ; START OF MEMORY FOR OP SYSTEM, HSB
+00045  A046  86 2C                 STX $2C ; POINTER: START OF BASIC, HSB
+00046  A048             ; CLEAR THE OTHER THREE LOW BYTES
+00047  A048  A9 00                 LDA #$00
+00048  A04A  85 37                 STA $37 ; POINTER: LIMIT OF MEMORY, LSB
+00049  A04C  8D 83 02              STA $0283 ; TOP OF MEMORY FOR OP SYSTEM, LSB
+00050  A04F  8D 81 02              STA $0281 ; START OF MEMORY FOR OP SYSTEM, LSB
+00051  A052             ; STORE A 0 IN $2B TEMPORARILY TO REACH THE START OF BASIC
+00052  A052  85 2B                 STA $2B ; POINTER: START OF BASIC, LSB
+00053  A054  A8                    TAY
+00054  A055  91 2B                 STA $(2B),Y ; 0 AT START OF BASIC
+00055  A057             ; STORE A 01 IN $2B - LOW BYTE OF START OF BASIC
+00056  A057  A9 01                 LDA #$01
+00057  A059  85 2B                 STA $2B ; POINTER: START OF BASIC, LSB
+00058  A05B  4C 78 E3              JMP $E378 ; GO ON TO INITIALIZE BASIC AND REDRAW STARTUP SCREEN
+00059  A05E             
+00060  A05E             
+
+******* 3 Label(s) *******
+cont1 = $A01E 
+noadj = $A026 
+noram1 = $A01C 
+
+******* 2 Unused label(s) *******
+cont1
+noram1
+
+******* 1 Variable(s) *******
+tgt_vic20  = $0001
+******* 1 Unused variables(s) *******
+tgt_vic20
+
