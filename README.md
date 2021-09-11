@@ -59,7 +59,7 @@ Here's a short BASIC program that assumes you have expansions in RAM[1-3] and BL
 Here are some examples of what happens when you use this with different expansions:
 
 |Expansion|Orig. free ram|Orig max array size|New free RAM|New max array size|RAM increase|
-|---------|--------------|-------------------|------------|------------------|------------|
+|-----------|--------------|-------------------|------------|------------------|------------|
 |None |3583 |1119 |4095 |1289 |512 |
 |RAM[1-3] |6655 |2143 |7167 |2313 |512 |
 |BLK1 |11775 |3848 |12287 |4021 |512
