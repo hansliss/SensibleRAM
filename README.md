@@ -1,11 +1,12 @@
-SensibleRAM
-# A RAM expansion to make your VIC-20 more sensible
+# SensibleRAM
+_A RAM expansion to make your VIC-20 more sensible_
 
-_Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. In 2021, not so much._
+This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
+
+_Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. Forty years later, in 2021, not so much._
 
 _Note that this hardware is as yet untested. The software has been tested in a patched VICE, however._
 
-This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
 
 ## Background
 
