@@ -3,7 +3,7 @@ _A RAM expansion to make your VIC-20 more sensible_
 
 This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
 
-You may already know that there are many different cool modern memory expansion cartridges for the VIC-20 nowadays, providing up to 35-37kB of expansion memory. Some of that memory can benefit from this hack _if you are using BASIC_ whilst some of it is not relevant here. The aim here is to provide BASIC with as much memory as possible, regardless of what memory expansions you have.
+You may already know that there are many different cool modern memory expansion cartridges for the VIC-20 nowadays, providing up to 35-37kB of expansion memory. Some of that memory can benefit from this hack _if you are using BASIC_, whilst some of it is not relevant here. The aim here is to provide BASIC with as much memory as possible, regardless of what memory expansions you have.
 
 _Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. Forty years later, in 2021, not so much._
 
