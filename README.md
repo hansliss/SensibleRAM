@@ -3,10 +3,11 @@ _A RAM expansion to make your VIC-20 more sensible_
 
 This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
 
+You may already know that there are many different cool modern memory expansion cartridges for the VIC-20 nowadays, providing up to 35-37kB of expansion memory. Some of that memory can benefit from this hack _if you are using BASIC_ whilst some of it is not relevant here. The aim here is to provide BASIC with as much memory as possible, regardless of what memory expansions you have.
+
 _Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. Forty years later, in 2021, not so much._
 
-_Note that this hardware is as yet untested. The software has been tested in a patched VICE, however._
-
+_Note that this hardware is as yet untested. The software has been tested in a patched VICE, however. Once I receive the boards and can test it properly, I'll update this and add some photos._
 
 ## Background
 
@@ -14,11 +15,11 @@ The VIC-20 has a somewhat confusing memory map. It comes with 5kB of system RAM 
 
 Normally, the screen memory is located at $1E00, so BASIC memory is $1000-$1DFF which is 3584 bytes. One byte is always consumed by BASIC, so the computer reports 3583 bytes free.
 
-If you add a 3k RAM expansion, it will be located at $0400-0FFF, the available space increases to 6655 bytes.
+If you add a 3k RAM expansion, it will be located at $0400-0FFF, and the available space increases to 6655 bytes.
 
-If you add larger expansions, they will start att BLK1 at $2000 and expand upwards until they reach $7FFF. However, when this happens, the screen memory becomes a problem, since at $1E00, it will split the system RAM in two non-contiguous parts. That won't do, so the screen memory is then moved to $1000, and all the memory between $1200 and $7FFF becomes usable to BASIC.
+If you add larger expansions, they will start att BLK1 at $2000 and expand upwards until they reach $7FFF. However, when this happens, the screen memory becomes a problem, since at $1E00, it will split the system RAM in two non-contiguous parts. That won't do, so the screen memory is moved to $1000 if you add memory to BLK1, and all the memory between $1200 and $7FFF becomes usable to BASIC.
 
-However, with one of those larger expansions in place, any 3k memory at $0400 becomes unusable, since it ends up outside the contiguous area.
+However, with one of those larger expansions in place, any 3k memory at $0400 becomes unusable to BASIC, since it ends up outside the contiguous area.
 
 All this has two negative effects on the system:
 1. The screen memory placement at either $1E00 or $1000 precludes any chance of getting contiguous memory between $0400 and $7FFF
