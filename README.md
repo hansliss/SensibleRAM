@@ -3,7 +3,7 @@ SensibleRAM
 
 _Before you spend a lot of time on this, please be aware that this is anachronistic nerdery of the highest degree. What this does would have been really cool in 1981. In 2021, not so much._
 
-_Note that this hardware is untested. The software has been tested in a patched VICE, however._
+_Note that this hardware is as yet untested. The software has been tested in a patched VICE, however._
 
 This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
 
@@ -17,15 +17,17 @@ If you add a 3k RAM expansion, it will be located at $0400-0FFF, the available s
 
 If you add larger expansions, they will start att BLK1 at $2000 and expand upwards until they reach $7FFF. However, when this happens, the screen memory becomes a problem, since at $1E00, it will split the system RAM in two non-contiguous parts. That won't do, so the screen memory is then moved to $1000, and all the memory between $1200 and $7FFF becomes usable to BASIC.
 
-However, with a larger expansion in place, any 3k memory at $0400 becomes unusable, since it ends up outside the contiguous area.
+However, with one of those larger expansions in place, any 3k memory at $0400 becomes unusable, since it ends up outside the contiguous area.
 
-All this has two negative effects on the system: The screen memory placement at either $1E00 or $1000 precludes any chance of getting contiguous memory between $0400 and $7FFF, and the screen memory eats up 512 bytes that could have been used as BASIC memory.
+All this has two negative effects on the system:
+1. The screen memory placement at either $1E00 or $1000 precludes any chance of getting contiguous memory between $0400 and $7FFF
+1. the screen memory eats up 512 bytes that could have been used as BASIC memory.
 
 ## The hardware
 
-The reason that the screen memory is located in one of those places as opposed to $0400 or $7E00 has to do with how the VIC chip is wired. The screen memory has to be shared between the CPU and the VIC, and the VIC can only address 16k of memory.
+The reason that the screen memory is located in one of those places as opposed to $0400 or $7E00 is the way the VIC chip is wired into the system. The screen memory has to be shared between the CPU and the VIC, and the VIC can only address 16k of memory.
 
-The way this has been handled is that the VIC chip shares two different blocks with the CPU, BLK0 and BLK4. The VIC chip has 14 address bits. VA0-VA12 are connected via a tri-state buffer (controlled by a clock pin, but let's leave bus sharing out of this) to the CPU's A0-A12, but the most significant bit VA13 is connected to the active-low block selector BLK4. This means that what the CPU sees as $0000-$1FFF, the VIC sees as $2000-$2FFF, and what the CPU sees as $8000-$9FFF is $0000-1FFF to the VIC.
+The way this has been handled is that the VIC chip shares two different blocks with the CPU, BLK0 and BLK4. The VIC chip has 14 address bits. VA0-VA12 are connected via a tri-state buffer (controlled by a clock pin, but let's leave bus sharing out of this) to the CPU's CA0-CA12, but the most significant bit VA13 is connected to the active-low block selector <span style="text-decoration:overline">BLK4</span>. This means that what the CPU sees as $0000-$1FFF, the VIC sees as $2000-$2FFF, and what the CPU sees as $8000-$9FFF is $0000-1FFF to the VIC.
 
 There's also a mechanism explicitly blocking the VIC chip from sharing some areas with the CPU. Those include the three RAM blocks RAM[1-3] at $0400, the main expansion and ROM blocks BLK[1,2,3,5,6,7] (which have to be blocked since the VIC chip can't address them), and the two auxiliary I/O areas I/O2 and I/O3, located in BLK4. On top of that, the expansions we talked about earlier are all cartridge expansions, so they are sitting on the CPU bus rather than the VIC bus, so they are unavailable to the VIC anyway.
 
