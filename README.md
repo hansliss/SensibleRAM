@@ -37,6 +37,13 @@ So, this project adds 512 bytes of RAM to $9200, and with the included programs 
 
 The included assembly program will try to move the screen memory and start/end memory pointers as correctly as possible regardless of what memory expansions are present, and will then reinitialize BASIC.
 
+Here's a short BASIC program that assumes you have expansions in RAM[1-3] and BLK[1-3]:
+```
+10pO36866,pE(36866)or128:pO36869,(pE(36869)and15)or(4*16)
+20pO648,146:pO44,4:pO43,1:pO56,128:pO55,0:pO642,4
+30pO641,0:pO644,128:pO643,0:pO1024,0:sys58232
+```
+
 Here are some examples of what happens when you use this with different expansions:
 
 |Expansion|Orig. free ram|Orig max array size|New free RAM|New max array size|RAM increase|
@@ -52,4 +59,19 @@ Here are some examples of what happens when you use this with different expansio
 
 The "max array size" fields come from an experiment I did, using a BASIC program "testmem.bas" that DIM'd string arrays of increasing size and filled them with strings, until no more memory was left. This program would have taken a week to run at the largest memory sizes, had I not run it in warp mode in VICE.
 
-Feel free to build on this! One possible addition would be to add an I/O location at, say $91FF, that causes the character ROM to be detached from the CPU bus and replaced with RAM, for an additional 4k of available RAM at $8000 - $8FFF, which is within the contiguous section. This would increase free space to 35839 bytes. Since this design uses a 32k chip which is 99.4% wasted, this would be a noble use of some of the space.
+Feel free to build on this! One possible addition would be to add an I/O location at, say $91FF, that causes the character ROM to be detached from the CPU bus and replaced with RAM, for an additional 4k of available RAM at $8000 - $8FFF, which is within the contiguous section. This would increase free space to 35839 bytes. Since this design uses a 32k chip which is 99.4% wasted, this would be a noble use of some of 
+the space.
+
+** Some technical notes without any explanatory text
+bit 7 of $9002 controls A9 of screen memory and A9 of color memory
+bit 4-7 of $9005 controls A10-A13 of VIC screen memory. A13 is /BLK4 to the CPU.
+
+$9200 = 1001 0010 0000 0000 = b01001 000000000
+$93FF = 1001 0011 1111 1111 = b01001 111111111
+
+!(A9 & A12 & !(A10 | A11 | A13))
+
+512 bytes = b01001 000000000 - b01001 111111111
+
+$9002.7 = 1
+$9005.4-7 = 0100
