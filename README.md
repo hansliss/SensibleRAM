@@ -1,4 +1,7 @@
 # SensibleRAM
+
+## NOTE: This doesn't currently work in a real VIC-20, since the address decoding for the VIA chips is incomplete, so they collide with this memory!
+
 _A RAM expansion to make your VIC-20 more sensible_
 
 This is actually how the VIC-20 should have been designed in the first place, hence the name SensibleRAM. It would have saved us all some headaches back in the day.
@@ -93,3 +96,6 @@ $9002.7 = 1
 A10-13:
 $9005.4-7 = 0100
 ```
+
+
+§1
