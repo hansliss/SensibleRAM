@@ -246,7 +246,7 @@
       <uri>C:\Program Files\KiCad\share\kicad\library/Memory_RAM.lib</uri>
     </library>
     <library logical="VIC-20">
-      <uri>K:\Hans Liss\Documents\KiCad\SensibleRAM/VIC-20.lib</uri>
+      <uri>../VIC-20.lib</uri>
     </library>
   </libraries>
   <nets>

@@ -1,6 +1,6 @@
 # SensibleRAM
 
-## NOTE: This doesn't currently work in a real VIC-20, since the address decoding for the VIA chips is incomplete, so they collide with this memory!
+## NOTE: This doesn't currently work in a real VIC-20, since the address decoding for the VIA chips is incomplete, so they collide with this memory! I'm testing another patch to take care of that problem.
 
 _A RAM expansion to make your VIC-20 more sensible_
 

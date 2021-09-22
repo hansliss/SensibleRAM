@@ -214,7 +214,7 @@
     (library (logical Memory_RAM)
       (uri "C:\\Program Files\\KiCad\\share\\kicad\\library/Memory_RAM.lib"))
     (library (logical VIC-20)
-      (uri "K:\\Hans Liss\\Documents\\KiCad\\SensibleRAM/VIC-20.lib")))
+      (uri "../VIC-20.lib")))
   (nets
     (net (code 1) (name /D7)
       (node (ref U1) (pin 9))
